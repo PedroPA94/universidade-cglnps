@@ -1,5 +1,7 @@
 package com.cglnps.api.entity;
 
+import com.cglnps.api.exception.DocumentoInvalidoException;
+
 import java.util.Arrays;
 
 public class Professor extends PessoaFisica {
@@ -14,7 +16,8 @@ public class Professor extends PessoaFisica {
     return diploma;
   }
 
-  public void enviarDiploma(byte[] diploma) {
+  public void enviarDiploma(byte[] diploma) throws DocumentoInvalidoException {
+    if (diploma == null || diploma.length == 0) throw new DocumentoInvalidoException("O diploma enviado é inválido.");
     this.diploma = diploma;
   }
 
