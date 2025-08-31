@@ -1,6 +1,5 @@
 package com.cglnps.api.entity;
 
-import com.cglnps.api.exception.CnpjInvalidoException;
 import com.cglnps.api.exception.TipoServicoInvalidoException;
 
 public class Fornecedor extends PessoaJuridica {
