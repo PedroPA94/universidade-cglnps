@@ -1,4 +1,4 @@
-package com.cglnps.universidade_cglnps_api;
+package com.cglnps.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
