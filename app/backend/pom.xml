@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cglnps</groupId>
-	<artifactId>universidade-cglnps-api</artifactId>
+	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>universidade-cglnps-api</name>
+	<name>api</name>
 	<description>Universidade CGLNPS</description>
 	<url/>
 	<licenses>

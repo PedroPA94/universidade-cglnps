@@ -1,4 +1,4 @@
-package com.cglnps.universidade_cglnps_api;
+package com.cglnps.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
