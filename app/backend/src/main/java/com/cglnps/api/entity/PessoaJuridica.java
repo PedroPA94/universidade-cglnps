@@ -5,7 +5,7 @@ import com.cglnps.api.exception.CnpjInvalidoException;
 public abstract class PessoaJuridica extends Pessoa {
   private String cnpj;
 
-  public PessoaJuridica(Long id, String nome, String email, String telefone, String cnpj) throws CnpjInvalidoException {
+  public PessoaJuridica(Long id, String nome, String email, String telefone, String cnpj) {
     super(id, nome, email, telefone);
     this.cnpj = cnpj;
   }
