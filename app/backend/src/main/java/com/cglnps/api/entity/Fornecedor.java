@@ -1,6 +1,7 @@
 package com.cglnps.api.entity;
 
 import com.cglnps.api.exception.CnpjInvalidoException;
+import com.cglnps.api.exception.TipoServicoInvalidoException;
 
 public class Fornecedor extends PessoaJuridica {
   private String tipoServico;
@@ -13,7 +14,8 @@ public class Fornecedor extends PessoaJuridica {
     return tipoServico;
   }
 
-  public void cadastrarTipoServico(String tipoServico) {
+  public void cadastrarTipoServico(String tipoServico) throws TipoServicoInvalidoException {
+    if (tipoServico == null || tipoServico.isEmpty()) throw new TipoServicoInvalidoException("Tipo de serviço não informado.");
     this.tipoServico = tipoServico;
   }
 
