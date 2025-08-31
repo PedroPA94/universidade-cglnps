@@ -6,8 +6,8 @@ public class Professor extends PessoaFisica {
   private byte[] diploma;
   private String[] disciplinasMinistradas;
 
-  public Professor(Long id, String nome, String email, String telefone, String cpf) {
-    super(id, nome, email, telefone, cpf);
+  public Professor(String nome, String email, String telefone, String cpf) {
+    super(nome, email, telefone, cpf);
   }
 
   public byte[] getDiploma() {

@@ -1,13 +1,15 @@
 package com.cglnps.api.entity;
 
+import java.util.UUID;
+
 public abstract class Pessoa {
-  private Long id;
+  private final String id;
   private String nome;
   private String email;
   private String telefone;
 
-  public Pessoa(Long id, String nome, String email, String telefone) {
-    this.id = id;
+  public Pessoa(String nome, String email, String telefone) {
+    this.id = UUID.randomUUID().toString();
     this.nome = nome;
     this.email = email;
     this.telefone = telefone;
@@ -37,13 +39,10 @@ public abstract class Pessoa {
     this.nome = nome;
   }
 
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public abstract void cadastrar();
 
