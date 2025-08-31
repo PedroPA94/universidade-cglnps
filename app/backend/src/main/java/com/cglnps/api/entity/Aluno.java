@@ -6,8 +6,8 @@ public class Aluno extends PessoaFisica {
   private byte[] comprovanteEnsinoMedio;
   private String curso;
 
-  public Aluno(Long id, String nome, String email, String telefone, String cpf) {
-    super(id, nome, email, telefone, cpf);
+  public Aluno(String nome, String email, String telefone, String cpf) {
+    super(nome, email, telefone, cpf);
   }
 
   public byte[] getComprovanteEnsinoMedio() {

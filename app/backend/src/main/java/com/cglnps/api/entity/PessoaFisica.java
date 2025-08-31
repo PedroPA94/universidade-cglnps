@@ -5,8 +5,8 @@ import com.cglnps.api.exception.CpfInvalidoException;
 public abstract class PessoaFisica extends Pessoa {
   private String cpf;
 
-  public PessoaFisica(Long id, String nome, String email, String telefone, String cpf) {
-    super(id, nome, email, telefone);
+  public PessoaFisica(String nome, String email, String telefone, String cpf) {
+    super(nome, email, telefone);
     this.cpf = cpf;
   }
 
