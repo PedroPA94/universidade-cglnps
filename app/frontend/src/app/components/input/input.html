@@ -1,0 +1,6 @@
+<input
+  [placeholder]="placeholder()"
+  type="text"
+  [value]="value"
+  (input)="onInput($any($event).target.value)"
+/>
