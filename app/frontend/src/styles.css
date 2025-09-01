@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --cor-de-fundo: #4a7b9d;
+  --cor-primaria: #faffd8;
+  --cor-secundaria: #ecffb0;
+  --cor-fonte: #171717;
+  --fonte: 'Inter';
+  --tamanho-fonte-texto: 28px;
+  --tamanho-fonte-titulo: 40px;
+  --sombra: 3px 3px 10px rgba(0, 0, 0, 0.4);
+  font-family: var(--fonte), sans-serif;
+  color: var(--cor-fonte);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--cor-de-fundo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: var(--tamanho-fonte-texto);
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 20px 125px;
+  border: none;
+  cursor: pointer;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  font-size: var(--tamanho-fonte-titulo);
+}
+
+.texto {
+  font-size: var(--tamanho-fonte-texto);
+}
+
+.sombra {
+  box-shadow: var(--sombra);
+}
+
+.botao-primario {
+  background-color: var(--cor-secundaria);
+}
+
+.botao-secundario {
+  background-color: var(--cor-primaria);
+}
+
+.card {
+  background-color: var(--cor-primaria);
+  border-radius: 30px;
+  padding: 1rem;
+  max-width: 50vw;
+}
+
+.texto-centro {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-3 {
+  gap: 3rem;
+}
+
+.gap-4 {
+  gap: 4rem;
+}
+
+.gap-5 {
+  gap: 5rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.p-3 {
+  padding: 3rem;
+}
+
+.p-4 {
+  padding: 4rem;
+}
+
+.p-5 {
+  padding: 5rem;
+}
