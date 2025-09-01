@@ -12,4 +12,5 @@ type EstiloBotao = 'primario' | 'secundario';
 export class Botao {
   estilo = input.required<EstiloBotao>();
   tipo = input('button');
+  form = input('');
 }

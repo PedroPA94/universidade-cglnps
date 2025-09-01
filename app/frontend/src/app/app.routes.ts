@@ -8,8 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'cadastro',
-    loadComponent: () =>
-      import('./pages/cadastro-geral/cadastro-geral').then((m) => m.CadastroGeral),
+    loadComponent: () => import('./pages/cadastro/cadastro').then((m) => m.Cadastro),
   },
   {
     path: '',
