@@ -57,6 +57,11 @@ h1 {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.footer {
+  color: var(--cor-primaria);
+  font-size: 1rem;
+}
+
 /* Sobrescrevendo classes Bootstrap */
 .btn {
   --bs-btn-font-size: var(--tamanho-fonte-texto);
