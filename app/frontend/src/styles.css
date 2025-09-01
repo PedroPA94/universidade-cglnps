@@ -13,32 +13,16 @@
   color: var(--cor-fonte);
 }
 
-html,
 body {
-  height: 100%;
-  margin: 0;
   background-color: var(--cor-de-fundo);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: var(--tamanho-fonte-texto);
 }
 
 h1 {
   margin: 0;
 }
 
-button {
-  font-size: var(--tamanho-fonte-texto);
-  font-weight: bold;
-  border-radius: 30px;
-  padding: 20px;
-  border: none;
-  cursor: pointer;
-  width: 300px;
-  box-sizing: border-box;
-}
-
-input {
+/* input {
   padding: 12px;
   font-size: var(--tamanho-fonte-texto);
   border-radius: 15px;
@@ -46,96 +30,41 @@ input {
   border-width: 1px;
   width: 100%;
   box-sizing: border-box;
-}
-
-.layout {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  justify-content: center;
-  align-items: center;
-}
+} */
 
 .titulo {
   font-size: var(--tamanho-fonte-titulo);
   margin-bottom: 2rem;
 }
 
-.texto {
-  font-size: var(--tamanho-fonte-texto);
-}
-
-.sombra {
-  box-shadow: var(--sombra);
-}
-
 .botao-primario {
   background-color: var(--cor-secundaria);
+}
+
+.botao-primario:hover {
+  background-color: color-mix(in srgb, var(--cor-secundaria), black 15%);
 }
 
 .botao-secundario {
   background-color: var(--cor-primaria);
 }
 
+.botao-secundario:hover {
+  background-color: color-mix(in srgb, var(--cor-primaria), black 15%);
+}
+
+.grupo-botoes {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Sobrescrevendo classes Bootstrap */
+.btn {
+  --bs-btn-font-size: var(--tamanho-fonte-texto);
+  --bs-btn-font-weight: bold;
+  --bs-btn-border-radius: 30px;
+}
+
 .card {
-  background-color: var(--cor-primaria);
-  border-radius: 30px;
-  padding: 1rem;
-  max-width: 50vw;
-}
-
-.texto-centro {
-  text-align: center;
-}
-
-.d-flex {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.gap-1 {
-  gap: 1rem;
-}
-
-.gap-2 {
-  gap: 2rem;
-}
-
-.gap-3 {
-  gap: 3rem;
-}
-
-.gap-4 {
-  gap: 4rem;
-}
-
-.gap-5 {
-  gap: 5rem;
-}
-
-.p-1 {
-  padding: 1rem;
-}
-
-.p-2 {
-  padding: 2rem;
-}
-
-.p-3 {
-  padding: 3rem;
-}
-
-.p-4 {
-  padding: 4rem;
-}
-
-.p-5 {
-  padding: 5rem;
+  --bs-card-bg: var(--cor-primaria);
+  --bs-card-border-radius: 30px;
 }

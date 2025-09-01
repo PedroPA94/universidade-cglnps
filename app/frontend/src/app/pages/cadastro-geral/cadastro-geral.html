@@ -2,16 +2,16 @@
   <app-card class="p-3">
     <h1 class="titulo">Preencha suas informações</h1>
 
-    <div class="d-flex flex-column gap-2">
+    <form class="d-flex flex-column gap-3">
       <app-input placeholder="Nome"></app-input>
       <app-input placeholder="Email"></app-input>
       <app-input placeholder="Telefone"></app-input>
-      <app-input placeholder="CPF/CNPJ"></app-input>
-    </div>
+      <app-input placeholder="CPF/CNPJ" class="pb-3"></app-input>
+    </form>
   </app-card>
 
-  <div class="d-flex gap-3">
-    <app-botao tipo="secundario" routerLink="/home">Voltar</app-botao>
-    <app-botao tipo="primario">Continuar</app-botao>
+  <div class="d-grid gap-3 grupo-botoes">
+    <app-botao estilo="secundario" routerLink="/home">Voltar</app-botao>
+    <app-botao estilo="primario">Continuar</app-botao>
   </div>
 </app-layout>
