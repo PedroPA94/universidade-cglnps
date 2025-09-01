@@ -23,13 +23,29 @@ body {
   align-items: center;
 }
 
+h1 {
+  margin: 0;
+}
+
 button {
   font-size: var(--tamanho-fonte-texto);
   font-weight: bold;
   border-radius: 30px;
-  padding: 20px 125px;
+  padding: 20px;
   border: none;
   cursor: pointer;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+input {
+  padding: 12px;
+  font-size: var(--tamanho-fonte-texto);
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .layout {
@@ -42,6 +58,7 @@ button {
 
 .titulo {
   font-size: var(--tamanho-fonte-titulo);
+  margin-bottom: 2rem;
 }
 
 .texto {
