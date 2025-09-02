@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Card } from '../../components/card/card';
 import { Botao } from '../../components/botao/botao';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CadastroService } from '../../services/cadastro';
 import {
@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'app-cadastro',
-  imports: [ReactiveFormsModule, Card, Botao, RouterLink],
+  imports: [ReactiveFormsModule, Card, Botao],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
@@ -42,10 +42,17 @@ export class Cadastro {
     ],
   });
 
+  voltar() {
+    this.cadastroService.limparFormulario();
+    this.router.navigate(['/home']);
+  }
+
   continuar() {
     this.formulario.markAllAsTouched();
 
     if (!this.formulario.valid) return;
+
+    this.cadastroService.limparFormulario();
 
     const { email, identificacao, nome, telefone } = this.formulario.getRawValue();
 

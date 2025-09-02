@@ -9,6 +9,17 @@ export class CadastroService {
 
   atualizarFormulario(dados: Partial<FormularioCadastro>): void {
     this.formulario = { ...this.formulario, ...dados };
-    console.log('*** form: ', this.formulario);
+  }
+
+  limparCampos(campos: string[]): void {
+    campos.forEach((campo) => {
+      if (campo in this.formulario) {
+        delete this.formulario[campo as keyof FormularioCadastro];
+      }
+    });
+  }
+
+  limparFormulario(): void {
+    this.formulario = {};
   }
 }

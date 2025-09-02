@@ -2,23 +2,29 @@ import { Component, inject } from '@angular/core';
 import { Card } from '../../../components/card/card';
 import { Botao } from '../../../components/botao/botao';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CadastroService } from '../../../services/cadastro';
 import { IFormularioFornecedor } from '../../../shared/interfaces/formulario-cadastro.interface';
 
 @Component({
   selector: 'app-fornecedor',
-  imports: [ReactiveFormsModule, Card, Botao, RouterLink],
+  imports: [ReactiveFormsModule, Card, Botao],
   templateUrl: './fornecedor.html',
   styleUrl: './fornecedor.css',
 })
 export class Fornecedor {
   fb = inject(FormBuilder);
   cadastroService = inject(CadastroService);
+  router = inject(Router);
 
   formularioFornecedor = this.fb.group({
     tipoServico: ['', Validators.required],
   });
+
+  voltar() {
+    this.cadastroService.limparCampos(['tipoServico']);
+    this.router.navigate(['/cadastro']);
+  }
 
   enviar() {
     this.formularioFornecedor.markAllAsTouched();
