@@ -22,16 +22,6 @@ h1 {
   margin: 0;
 }
 
-/* input {
-  padding: 12px;
-  font-size: var(--tamanho-fonte-texto);
-  border-radius: 15px;
-  border-style: solid;
-  border-width: 1px;
-  width: 100%;
-  box-sizing: border-box;
-} */
-
 .titulo {
   font-size: var(--tamanho-fonte-titulo);
   margin-bottom: 2rem;

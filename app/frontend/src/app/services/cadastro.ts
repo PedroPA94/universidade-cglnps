@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IFormularioCadastro } from '../shared/interfaces/formulario-cadastro.interface';
+import { FormularioCadastro } from '../shared/interfaces/formulario-cadastro.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Cadastro {
-  private formulario: Partial<IFormularioCadastro> = {};
+export class CadastroService {
+  private formulario: Partial<FormularioCadastro> = {};
 
-  atualizar(dados: Partial<IFormularioCadastro>): void {
+  atualizarFormulario(dados: Partial<FormularioCadastro>): void {
     this.formulario = { ...this.formulario, ...dados };
   }
 }

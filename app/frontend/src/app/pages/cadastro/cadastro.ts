@@ -2,8 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Card } from '../../components/card/card';
 import { Botao } from '../../components/botao/botao';
 import { RouterLink } from '@angular/router';
-import { Input } from '../../components/input/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CadastroService } from '../../services/cadastro';
+import {
+  IFormularioFornecedor,
+  IFormularioPF,
+  IFormularioPJ,
+} from '../../shared/interfaces/formulario-cadastro.interface';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,7 +17,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './cadastro.css',
 })
 export class Cadastro {
+  private readonly QTD_DIGITOS_CPF = 11;
+  private readonly QTD_DIGITOS_CNPJ = 14;
+
   fb = inject(FormBuilder);
+  cadastroService = inject(CadastroService);
 
   formulario = this.fb.group({
     nome: ['', Validators.required],
@@ -31,7 +40,25 @@ export class Cadastro {
 
   clique() {
     this.formulario.markAllAsTouched();
-    console.log(this.formulario.getRawValue());
-    console.log(this.formulario.valid);
+
+    if (!this.formulario.valid) return;
+
+    const { email, identificacao, nome, telefone } = this.formulario.getRawValue();
+
+    if (identificacao?.length === this.QTD_DIGITOS_CPF) {
+      this.cadastroService.atualizarFormulario({
+        nome,
+        email,
+        telefone,
+        cpf: identificacao,
+      } as IFormularioPF);
+    } else if (identificacao?.length === this.QTD_DIGITOS_CNPJ) {
+      this.cadastroService.atualizarFormulario({
+        nome,
+        email,
+        telefone,
+        cnpj: identificacao,
+      } as IFormularioPJ);
+    }
   }
 }
