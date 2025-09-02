@@ -1,0 +1,87 @@
+<app-card class="p-3 mb-5">
+  <h1 class="titulo">Preencha suas informações</h1>
+
+  <form
+    [formGroup]="formulario"
+    (ngSubmit)="clique()"
+    id="formulario"
+    class="d-flex flex-column gap-3"
+  >
+    <!-- Nome -->
+    <div>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="Nome"
+        formControlName="nome"
+        [class.is-invalid]="formulario.get('nome')?.invalid && formulario.get('nome')?.touched"
+      />
+      @if(formulario.get('nome')?.invalid && formulario.get('nome')?.touched) {
+      <div class="invalid-feedback">Campo obrigatório.</div>
+      }
+    </div>
+
+    <!-- Email -->
+    <div>
+      <input
+        type="email"
+        class="form-control form-control-lg"
+        placeholder="Email"
+        formControlName="email"
+        [class.is-invalid]="formulario.get('email')?.invalid && formulario.get('email')?.touched"
+      />
+      @if(formulario.get('email')?.invalid && formulario.get('email')?.touched) {
+      <div class="invalid-feedback">
+        @if(formulario.get('email')?.errors?.['required']) { Campo obrigatório. } @else if
+        (formulario.get('email')?.errors?.['email']) { Email inválido. }
+      </div>
+      }
+    </div>
+
+    <!-- Telefone -->
+    <div>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="DDD + Telefone"
+        formControlName="telefone"
+        [class.is-invalid]="
+          formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched
+        "
+      />
+      @if(formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched) {
+      <div class="invalid-feedback">
+        <!-- prettier-ignore -->
+        @if(formulario.get('telefone')?.errors?.['required']) { Campo obrigatório. } 
+        @else if(formulario.get('telefone')?.errors?.['maxlength'] || formulario.get('telefone')?.errors?.['minlength']) { O telefone deve ter entre 10 e 11 dígitos } 
+        @else if(formulario.get('telefone')?.errors?.['pattern']) { Número inválido. Use apenas dígitos. }
+      </div>
+      }
+    </div>
+
+    <!-- CPF/CNPJ -->
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="CPF/CNPJ (apenas números)"
+        formControlName="identificacao"
+        [class.is-invalid]="
+          formulario.get('identificacao')?.invalid && formulario.get('identificacao')?.touched
+        "
+      />
+      @if(formulario.get('identificacao')?.invalid && formulario.get('identificacao')?.touched) {
+      <div class="invalid-feedback">
+        <!-- prettier-ignore -->
+        @if(formulario.get('identificacao')?.errors?.['required']) { Campo obrigatório. } 
+        @else if(formulario.get('identificacao')?.errors?.['pattern']) { CPF/CNPJ inválido. }
+      </div>
+      }
+    </div>
+  </form>
+</app-card>
+
+<div class="d-grid gap-3 grupo-botoes">
+  <app-botao estilo="secundario" routerLink="/home">Voltar</app-botao>
+  <app-botao estilo="primario" tipo="submit" form="formulario">Continuar</app-botao>
+</div>

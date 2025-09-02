@@ -7,6 +7,10 @@ export const routes: Routes = [
     component: Home,
   },
   {
+    path: 'cadastro',
+    loadComponent: () => import('./pages/cadastro/cadastro').then((m) => m.Cadastro),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home',

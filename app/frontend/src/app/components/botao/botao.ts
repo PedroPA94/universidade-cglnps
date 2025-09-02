@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 
-type TipoBotao = 'primario' | 'secundario';
+type EstiloBotao = 'primario' | 'secundario';
 
 @Component({
   selector: 'app-botao',
@@ -10,5 +10,7 @@ type TipoBotao = 'primario' | 'secundario';
   styleUrl: './botao.css',
 })
 export class Botao {
-  tipo = input.required<TipoBotao>();
+  estilo = input.required<EstiloBotao>();
+  tipo = input('button');
+  form = input('');
 }

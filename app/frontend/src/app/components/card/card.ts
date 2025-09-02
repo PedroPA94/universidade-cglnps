@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './card.html',
   styleUrl: './card.css',
   host: {
-    class: 'card sombra',
+    class: 'card shadow',
   },
 })
 export class Card {}

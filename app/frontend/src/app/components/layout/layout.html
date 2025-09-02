@@ -1,1 +1,6 @@
-<div class="layout"><ng-content></ng-content></div>
+<div class="d-flex flex-column min-vh-100">
+  <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+    <ng-content></ng-content>
+  </div>
+  <app-footer class="align-self-center"></app-footer>
+</div>
