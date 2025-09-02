@@ -68,3 +68,7 @@ h1 {
 .invalid-feedback {
   font-size: 0.9rem;
 }
+
+.alert-danger {
+  font-size: 1rem;
+}

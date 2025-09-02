@@ -25,6 +25,12 @@
       }
     </div>
   </form>
+
+  @if (mensagemErro) {
+  <div class="mt-4">
+    <app-aviso-erro [mensagem]="mensagemErro" (fecharAviso)="fecharAviso()"></app-aviso-erro>
+  </div>
+  }
 </app-card>
 
 <div class="d-grid gap-3 grupo-botoes">

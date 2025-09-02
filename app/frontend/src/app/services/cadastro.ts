@@ -3,8 +3,8 @@ import {
   FormularioCadastro,
   IFormularioFornecedor,
 } from '../shared/interfaces/formulario-cadastro.interface';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +33,9 @@ export class CadastroService {
 
   cadastrarFornecedor(): Observable<any> {
     if (!this.validarFornecedor(this.formulario)) {
-      throw new Error('Formulário de fornecedor incompleto ou inválido');
+      return throwError(
+        () => new HttpErrorResponse({ error: 'Cadastro de fornecedor incompleto ou inválido' })
+      );
     }
 
     return this.http.post(this.BASE_URL_CADASTRO + '/fornecedor', this.formulario);
