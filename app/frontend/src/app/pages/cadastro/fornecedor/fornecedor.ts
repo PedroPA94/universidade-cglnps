@@ -34,5 +34,7 @@ export class Fornecedor {
     this.cadastroService.atualizarFormulario(
       this.formularioFornecedor.value as IFormularioFornecedor
     );
+
+    this.router.navigate(['/cadastro/sucesso']);
   }
 }
