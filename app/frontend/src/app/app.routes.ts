@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
+import { cadastroRoutes } from './pages/cadastro/cadastro.routes';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'cadastro',
-    loadComponent: () => import('./pages/cadastro/cadastro').then((m) => m.Cadastro),
+    children: cadastroRoutes,
   },
   {
     path: '',

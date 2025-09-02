@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Card } from '../../components/card/card';
 import { Botao } from '../../components/botao/botao';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CadastroService } from '../../services/cadastro';
 import {
@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'app-cadastro',
-  imports: [ReactiveFormsModule, Card, Botao, RouterLink],
+  imports: [ReactiveFormsModule, Card, Botao],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
@@ -22,6 +22,7 @@ export class Cadastro {
 
   fb = inject(FormBuilder);
   cadastroService = inject(CadastroService);
+  router = inject(Router);
 
   formulario = this.fb.group({
     nome: ['', Validators.required],
@@ -38,10 +39,17 @@ export class Cadastro {
     identificacao: ['', [Validators.required, Validators.pattern(/^\d{11}$|^\d{14}$/)]],
   });
 
-  clique() {
+  voltar() {
+    this.cadastroService.limparFormulario();
+    this.router.navigate(['/home']);
+  }
+
+  continuar() {
     this.formulario.markAllAsTouched();
 
     if (!this.formulario.valid) return;
+
+    this.cadastroService.limparFormulario();
 
     const { email, identificacao, nome, telefone } = this.formulario.getRawValue();
 
@@ -59,6 +67,7 @@ export class Cadastro {
         telefone,
         cnpj: identificacao,
       } as IFormularioPJ);
+      this.router.navigate(['/cadastro/fornecedor']);
     }
   }
 }

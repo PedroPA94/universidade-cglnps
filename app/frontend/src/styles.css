@@ -57,6 +57,7 @@ h1 {
   --bs-btn-font-size: var(--tamanho-fonte-texto);
   --bs-btn-font-weight: bold;
   --bs-btn-border-radius: 30px;
+  width: 230px;
 }
 
 .card {
@@ -66,4 +67,8 @@ h1 {
 
 .invalid-feedback {
   font-size: 0.9rem;
+}
+
+.alert-danger {
+  font-size: 1rem;
 }
