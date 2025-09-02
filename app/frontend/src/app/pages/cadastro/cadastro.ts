@@ -25,10 +25,10 @@ export class Cadastro {
   router = inject(Router);
 
   formulario = this.fb.group({
-    nome: ['teste', Validators.required],
-    email: ['t@t', [Validators.required, Validators.email]],
+    nome: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     telefone: [
-      '1234567890',
+      '',
       [
         Validators.required,
         Validators.pattern(/^\d{10,11}$/),
@@ -36,10 +36,7 @@ export class Cadastro {
         Validators.maxLength(11),
       ],
     ],
-    identificacao: [
-      '12345678901234',
-      [Validators.required, Validators.pattern(/^\d{11}$|^\d{14}$/)],
-    ],
+    identificacao: ['', [Validators.required, Validators.pattern(/^\d{11}$|^\d{14}$/)]],
   });
 
   voltar() {

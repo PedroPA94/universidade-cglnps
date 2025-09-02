@@ -35,6 +35,8 @@ export class Fornecedor {
       this.formularioFornecedor.value as IFormularioFornecedor
     );
 
-    this.router.navigate(['/cadastro/sucesso']);
+    this.cadastroService.cadastrarFornecedor().subscribe(() => {
+      this.router.navigate(['/cadastro/sucesso']);
+    });
   }
 }
