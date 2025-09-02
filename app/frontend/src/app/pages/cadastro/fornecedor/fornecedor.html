@@ -1,0 +1,33 @@
+<app-card class="p-3 mb-5">
+  <h1 class="titulo">Preencha suas informações</h1>
+
+  <form
+    [formGroup]="formularioFornecedor"
+    (ngSubmit)="enviar()"
+    id="formulario"
+    class="d-flex flex-column gap-3"
+  >
+    <!-- Tipo de serviço -->
+    <div>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        placeholder="Informe o tipo de serviço"
+        formControlName="tipoServico"
+        [class.is-invalid]="
+          formularioFornecedor.get('tipoServico')?.invalid &&
+          formularioFornecedor.get('tipoServico')?.touched
+        "
+      />
+      @if(formularioFornecedor.get('tipoServico')?.invalid &&
+      formularioFornecedor.get('tipoServico')?.touched) {
+      <div class="invalid-feedback">Campo obrigatório.</div>
+      }
+    </div>
+  </form>
+</app-card>
+
+<div class="d-grid gap-3 grupo-botoes">
+  <app-botao estilo="secundario" routerLink="/cadastro">Voltar</app-botao>
+  <app-botao estilo="primario" tipo="submit" form="formulario">Enviar</app-botao>
+</div>

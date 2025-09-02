@@ -9,5 +9,6 @@ export class CadastroService {
 
   atualizarFormulario(dados: Partial<FormularioCadastro>): void {
     this.formulario = { ...this.formulario, ...dados };
+    console.log('*** form: ', this.formulario);
   }
 }

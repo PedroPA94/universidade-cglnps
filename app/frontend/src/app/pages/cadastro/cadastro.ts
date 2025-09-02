@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Card } from '../../components/card/card';
 import { Botao } from '../../components/botao/botao';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CadastroService } from '../../services/cadastro';
 import {
@@ -22,12 +22,13 @@ export class Cadastro {
 
   fb = inject(FormBuilder);
   cadastroService = inject(CadastroService);
+  router = inject(Router);
 
   formulario = this.fb.group({
-    nome: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    nome: ['teste', Validators.required],
+    email: ['t@t', [Validators.required, Validators.email]],
     telefone: [
-      '',
+      '1234567890',
       [
         Validators.required,
         Validators.pattern(/^\d{10,11}$/),
@@ -35,10 +36,13 @@ export class Cadastro {
         Validators.maxLength(11),
       ],
     ],
-    identificacao: ['', [Validators.required, Validators.pattern(/^\d{11}$|^\d{14}$/)]],
+    identificacao: [
+      '12345678901234',
+      [Validators.required, Validators.pattern(/^\d{11}$|^\d{14}$/)],
+    ],
   });
 
-  clique() {
+  continuar() {
     this.formulario.markAllAsTouched();
 
     if (!this.formulario.valid) return;
@@ -59,6 +63,7 @@ export class Cadastro {
         telefone,
         cnpj: identificacao,
       } as IFormularioPJ);
+      this.router.navigate(['/cadastro/fornecedor']);
     }
   }
 }
