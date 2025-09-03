@@ -40,8 +40,7 @@ export class Fornecedor {
     );
 
     this.cadastroService.cadastrarFornecedor().subscribe({
-      next: (a) => {
-        console.log('*** aaaa: ', a);
+      next: () => {
         this.router.navigate(['/cadastro/sucesso']);
       },
       error: (err: HttpErrorResponse) => {

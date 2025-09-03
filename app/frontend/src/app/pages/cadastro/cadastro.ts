@@ -60,6 +60,7 @@ export class Cadastro {
         telefone,
         cpf: identificacao,
       } as IFormularioPF);
+      this.router.navigate(['/cadastro/pessoa-fisica']);
     } else if (identificacao?.length === this.QTD_DIGITOS_CNPJ) {
       this.cadastroService.atualizarFormulario({
         nome,

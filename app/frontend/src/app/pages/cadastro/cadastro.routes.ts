@@ -6,6 +6,10 @@ export const cadastroRoutes: Routes = [
     loadComponent: () => import('./fornecedor/fornecedor').then((m) => m.Fornecedor),
   },
   {
+    path: 'pessoa-fisica',
+    loadComponent: () => import('./pessoa-fisica/pessoa-fisica').then((m) => m.PessoaFisica),
+  },
+  {
     path: 'sucesso',
     loadComponent: () => import('./sucesso/sucesso').then((m) => m.Sucesso),
   },

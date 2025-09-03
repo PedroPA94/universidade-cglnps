@@ -1,0 +1,78 @@
+<app-card class="p-3 mb-5">
+  <h1 class="titulo">Preencha suas informações</h1>
+
+  <div class="d-flex">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="radio1"
+        [formControl]="selecaoTipoPessoaFisica"
+        value="ALUNO"
+      />
+      <label class="form-check-label" for="radio1">Aluno</label>
+    </div>
+
+    <div class="form-check ms-5">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="radio2"
+        [formControl]="selecaoTipoPessoaFisica"
+        value="PROFESSOR"
+      />
+      <label class="form-check-label" for="radio2">Professor</label>
+    </div>
+  </div>
+  @if(selecaoTipoPessoaFisica.invalid && selecaoTipoPessoaFisica.touched) {
+  <div class="invalid-feedback d-block">É obrigatório informar se é aluno ou professor.</div>
+  }
+
+  <!-- prettier-ignore -->
+  @if(selecaoTipoPessoaFisica.value === 'PROFESSOR') {
+  <form
+    [formGroup]="formularioProfessor"
+    (ngSubmit)="enviar()"
+    id="formulario"
+    class="d-flex flex-column gap-3 mt-4"
+  >
+    <!-- Disciplinas -->
+    <div>
+      <ng-select
+        [items]="disciplinasDisponiveis"
+        bindLabel="name"
+        bindValue="id"
+        [multiple]="true"
+        placeholder="Selecione as disciplinas"
+        clearAllText="Clear"
+        formControlName="disciplinasMinistradas"
+        style="max-width: 550px"
+        [class.is-invalid]="
+          formularioProfessor.get('disciplinas')?.invalid &&
+          formularioProfessor.get('disciplinas')?.touched
+        "
+      >
+      </ng-select>
+      @if(formularioProfessor.get('disciplinas')?.invalid &&
+      formularioProfessor.get('disciplinas')?.touched) {
+      <div class="invalid-feedback">Campo obrigatório.</div>
+      }
+    </div>
+
+    <app-upload-arquivo
+      [label]="'Envie o diploma (somente JPG)'"
+      [control]="formularioProfessor.controls.diploma"
+    ></app-upload-arquivo>
+  </form>
+
+  @if (mensagemErro) {
+  <div class="mt-4">
+    <app-aviso-erro [mensagem]="mensagemErro" (fecharAviso)="fecharAviso()"></app-aviso-erro>
+  </div>
+  } }
+</app-card>
+
+<div class="d-grid gap-3 grupo-botoes">
+  <app-botao estilo="secundario" (click)="voltar()">Voltar</app-botao>
+  <app-botao estilo="primario" tipo="submit" form="formulario">Enviar</app-botao>
+</div>
