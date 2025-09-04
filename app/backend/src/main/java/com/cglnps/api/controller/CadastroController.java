@@ -1,5 +1,6 @@
 package com.cglnps.api.controller;
 
+import com.cglnps.api.controller.dto.CadastroAlunoDto;
 import com.cglnps.api.controller.dto.CadastroFornecedorDto;
 import com.cglnps.api.controller.dto.CadastroProfessorDto;
 import com.cglnps.api.exception.CnpjInvalidoException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cadastro")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CadastroController {
   private final CadastroService cadastroService;
 
@@ -31,5 +33,11 @@ public class CadastroController {
   @ResponseStatus(HttpStatus.CREATED)
   public void cadastrarProfessor(@RequestBody CadastroProfessorDto cadastroProfessorDto) throws CpfInvalidoException, DocumentoInvalidoException {
     cadastroService.cadastrarPessoaFisica(cadastroProfessorDto.paraEntidade());
+  }
+
+  @PostMapping("/aluno")
+  @ResponseStatus(HttpStatus.CREATED)
+  public void cadastrarAluno(@RequestBody CadastroAlunoDto cadastroAlunoDto) throws CpfInvalidoException, DocumentoInvalidoException {
+    cadastroService.cadastrarPessoaFisica(cadastroAlunoDto.paraEntidade());
   }
 }

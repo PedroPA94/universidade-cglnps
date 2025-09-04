@@ -1,0 +1,23 @@
+<div class="my-3">
+  <label for="formFile" class="form-label">{{ label() }}</label>
+  <input
+    class="form-control"
+    type="file"
+    id="formFile"
+    accept=".jpg,image/jpeg"
+    (change)="arquivoSelecionado($event)"
+    [class.is-invalid]="control().invalid && control().touched"
+  />
+
+  @if (control().pristine || (control().touched && control().valid)) {
+  <div id="formFile" class="form-text" style="font-size: 1rem">
+    Somente arquivos JPG de até 1MB.
+  </div>
+  } @if (control().errors?.['required'] && control().touched) {
+  <div class="invalid-feedback">O arquivo é obrigatório.</div>
+  } @if (control().errors?.['tamanhoExcedido'] && control().touched) {
+  <div class="invalid-feedback">O arquivo não pode ser maior que 1MB.</div>
+  } @if (control().errors?.['tipoInvalido'] && control().touched) {
+  <div class="invalid-feedback">Apenas arquivos JPG são permitidos.</div>
+  }
+</div>

@@ -1,4 +1,4 @@
-interface IFormularioPessoa {
+export interface IFormularioPessoa {
   nome: string;
   email: string;
   telefone: string;
@@ -23,7 +23,7 @@ export interface IFormularioProfessor extends IFormularioPF {
 
 export interface IFormularioAluno extends IFormularioPF {
   curso: string;
-  certificadoEnsinoMedio: File;
+  comprovanteEnsinoMedio: File;
 }
 
 export type FormularioCadastro = IFormularioFornecedor | IFormularioProfessor | IFormularioAluno;

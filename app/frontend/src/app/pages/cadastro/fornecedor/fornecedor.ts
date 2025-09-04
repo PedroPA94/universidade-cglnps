@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Card } from '../../../components/card/card';
 import { Botao } from '../../../components/botao/botao';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CadastroService } from '../../../services/cadastro';
 import { IFormularioFornecedor } from '../../../shared/interfaces/formulario-cadastro.interface';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -40,8 +40,7 @@ export class Fornecedor {
     );
 
     this.cadastroService.cadastrarFornecedor().subscribe({
-      next: (a) => {
-        console.log('*** aaaa: ', a);
+      next: () => {
         this.router.navigate(['/cadastro/sucesso']);
       },
       error: (err: HttpErrorResponse) => {
