@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import {
   FormularioCadastro,
+  IFormularioAluno,
   IFormularioFornecedor,
   IFormularioProfessor,
 } from '../shared/interfaces/formulario-cadastro.interface';
@@ -42,16 +43,6 @@ export class CadastroService {
     return this.http.post(this.URL_BASE_CADASTRO + '/fornecedor', this.formulario);
   }
 
-  private validarFornecedor(dados: Partial<IFormularioFornecedor>): dados is IFormularioFornecedor {
-    return (
-      typeof dados.nome === 'string' &&
-      typeof dados.email === 'string' &&
-      typeof dados.telefone === 'string' &&
-      typeof dados.cnpj === 'string' &&
-      typeof dados.tipoServico === 'string'
-    );
-  }
-
   cadastrarProfessor(): Observable<any> {
     if (!this.validarProfessor(this.formulario)) {
       return throwError(
@@ -70,14 +61,21 @@ export class CadastroService {
     );
   }
 
-  private validarProfessor(dados: Partial<IFormularioProfessor>): dados is IFormularioProfessor {
-    return (
-      typeof dados.nome === 'string' &&
-      typeof dados.email === 'string' &&
-      typeof dados.telefone === 'string' &&
-      typeof dados.cpf === 'string' &&
-      typeof dados.disciplinasMinistradas === 'object' &&
-      typeof dados.diploma === 'object'
+  cadastrarAluno(): Observable<any> {
+    if (!this.validarAluno(this.formulario)) {
+      return throwError(
+        () => new HttpErrorResponse({ error: 'Cadastro de aluno incompleto ou inválido' })
+      );
+    }
+
+    return from(this.converterArquivoParaBytes(this.formulario.comprovanteEnsinoMedio)).pipe(
+      switchMap((bytes) => {
+        const dados = {
+          ...this.formulario,
+          comprovanteEnsinoMedio: Array.from(bytes),
+        };
+        return this.http.post(this.URL_BASE_CADASTRO + '/aluno', dados);
+      })
     );
   }
 
@@ -91,5 +89,37 @@ export class CadastroService {
       leitor.onerror = reject;
       leitor.readAsArrayBuffer(arquivo);
     });
+  }
+
+  private validarFornecedor(dados: Partial<IFormularioFornecedor>): dados is IFormularioFornecedor {
+    return (
+      typeof dados.nome === 'string' &&
+      typeof dados.email === 'string' &&
+      typeof dados.telefone === 'string' &&
+      typeof dados.cnpj === 'string' &&
+      typeof dados.tipoServico === 'string'
+    );
+  }
+
+  private validarProfessor(dados: Partial<IFormularioProfessor>): dados is IFormularioProfessor {
+    return (
+      typeof dados.nome === 'string' &&
+      typeof dados.email === 'string' &&
+      typeof dados.telefone === 'string' &&
+      typeof dados.cpf === 'string' &&
+      typeof dados.disciplinasMinistradas === 'object' &&
+      typeof dados.diploma === 'object'
+    );
+  }
+
+  private validarAluno(dados: Partial<IFormularioAluno>): dados is IFormularioAluno {
+    return (
+      typeof dados.nome === 'string' &&
+      typeof dados.email === 'string' &&
+      typeof dados.telefone === 'string' &&
+      typeof dados.cpf === 'string' &&
+      typeof dados.curso === 'string' &&
+      typeof dados.comprovanteEnsinoMedio === 'object'
+    );
   }
 }

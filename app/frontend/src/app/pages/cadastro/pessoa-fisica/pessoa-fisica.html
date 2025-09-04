@@ -8,7 +8,7 @@
         type="radio"
         id="radio1"
         [formControl]="selecaoTipoPessoaFisica"
-        value="ALUNO"
+        [value]="tipoPessoaFisica.ALUNO"
       />
       <label class="form-check-label" for="radio1">Aluno</label>
     </div>
@@ -19,7 +19,7 @@
         type="radio"
         id="radio2"
         [formControl]="selecaoTipoPessoaFisica"
-        value="PROFESSOR"
+        [value]="tipoPessoaFisica.PROFESSOR"
       />
       <label class="form-check-label" for="radio2">Professor</label>
     </div>
@@ -29,12 +29,51 @@
   }
 
   <!-- prettier-ignore -->
-  @if(selecaoTipoPessoaFisica.value === 'PROFESSOR') {
+  @if(selecaoTipoPessoaFisica.value ===  tipoPessoaFisica.ALUNO) {
+  <form
+    [formGroup]="formularioAluno"
+    (ngSubmit)="enviar()"
+    id="formulario"
+    class="d-flex flex-column gap-3 mt-4"
+    style="font-size: 1.25rem"
+  >
+    <!-- Curso -->
+    <div>
+      <ng-select
+        [items]="disciplinasDisponiveis"
+        bindLabel="name"
+        bindValue="id"
+        [multiple]="false"
+        placeholder="Selecione o curso"
+        clearAllText="Clear"
+        formControlName="curso"
+        style="max-width: 550px"
+        [class.is-invalid]="
+          formularioAluno.get('curso')?.invalid && formularioAluno.get('curso')?.touched
+        "
+      >
+      </ng-select>
+      @if(formularioAluno.get('curso')?.invalid && formularioAluno.get('curso')?.touched) {
+      <div class="invalid-feedback">Campo obrigatório.</div>
+      }
+    </div>
+
+    <!-- Comprovante EM -->
+    <app-upload-arquivo
+      [label]="'Envie o comprovante de conclusão do Ensino Médio'"
+      [control]="formularioAluno.controls.comprovanteEnsinoMedio"
+    ></app-upload-arquivo>
+  </form>
+  }
+
+  <!-- prettier-ignore -->
+  @if(selecaoTipoPessoaFisica.value === tipoPessoaFisica.PROFESSOR) {
   <form
     [formGroup]="formularioProfessor"
     (ngSubmit)="enviar()"
     id="formulario"
     class="d-flex flex-column gap-3 mt-4"
+    style="font-size: 1.25rem"
   >
     <!-- Disciplinas -->
     <div>
@@ -59,17 +98,20 @@
       }
     </div>
 
+    <!-- Diploma -->
     <app-upload-arquivo
-      [label]="'Envie o diploma (somente JPG)'"
+      [label]="'Envie o diploma'"
       [control]="formularioProfessor.controls.diploma"
     ></app-upload-arquivo>
   </form>
+  }
 
+  <!-- prettier-ignore -->
   @if (mensagemErro) {
   <div class="mt-4">
     <app-aviso-erro [mensagem]="mensagemErro" (fecharAviso)="fecharAviso()"></app-aviso-erro>
   </div>
-  } }
+  }
 </app-card>
 
 <div class="d-grid gap-3 grupo-botoes">
