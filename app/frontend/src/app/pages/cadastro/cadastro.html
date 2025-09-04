@@ -75,6 +75,7 @@
         <!-- prettier-ignore -->
         @if(formulario.get('identificacao')?.errors?.['required']) { Campo obrigatório. } 
         @else if(formulario.get('identificacao')?.errors?.['pattern']) { CPF/CNPJ inválido. }
+        @else if(formulario.get('identificacao')?.errors?.['emUso']) { CPF/CNPJ em uso. }
       </div>
       }
     </div>
