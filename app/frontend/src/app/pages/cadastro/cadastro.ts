@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CadastroService } from '../../services/cadastro';
 import {
-  IFormularioFornecedor,
+  FormularioCadastro,
+  IFormularioPessoa,
   IFormularioPF,
   IFormularioPJ,
 } from '../../shared/interfaces/formulario-cadastro.interface';
@@ -17,8 +18,8 @@ import {
   styleUrl: './cadastro.css',
 })
 export class Cadastro {
-  private readonly QTD_DIGITOS_CPF = 11;
-  private readonly QTD_DIGITOS_CNPJ = 14;
+  private static readonly QTD_DIGITOS_CPF = 11;
+  private static readonly QTD_DIGITOS_CNPJ = 14;
 
   fb = inject(FormBuilder);
   cadastroService = inject(CadastroService);
@@ -49,26 +50,40 @@ export class Cadastro {
 
     if (!this.formulario.valid) return;
 
-    this.cadastroService.limparFormulario();
-
     const { email, identificacao, nome, telefone } = this.formulario.getRawValue();
 
-    if (identificacao?.length === this.QTD_DIGITOS_CPF) {
-      this.cadastroService.atualizarFormulario({
-        nome,
-        email,
-        telefone,
-        cpf: identificacao,
-      } as IFormularioPF);
-      this.router.navigate(['/cadastro/pessoa-fisica']);
-    } else if (identificacao?.length === this.QTD_DIGITOS_CNPJ) {
-      this.cadastroService.atualizarFormulario({
-        nome,
-        email,
-        telefone,
-        cnpj: identificacao,
-      } as IFormularioPJ);
-      this.router.navigate(['/cadastro/fornecedor']);
+    if (!identificacao || !nome || !email || !telefone) return;
+
+    this.cadastroService.limparFormulario();
+
+    if (this.ehCPF(identificacao)) {
+      this.cadastrarPessoaFisica({ nome, email, telefone, identificacao });
+    } else if (this.ehCNPJ(identificacao)) {
+      this.cadastrarPessoaJuridica({ nome, email, telefone, identificacao });
     }
+  }
+
+  private ehCPF(identificacao: string): boolean {
+    return identificacao.length === Cadastro.QTD_DIGITOS_CPF;
+  }
+
+  private ehCNPJ(identificacao: string): boolean {
+    return identificacao.length === Cadastro.QTD_DIGITOS_CNPJ;
+  }
+
+  private cadastrarPessoaFisica(dados: { identificacao: string } & IFormularioPessoa): void {
+    this.cadastroService.atualizarFormulario({
+      ...dados,
+      cpf: dados.identificacao,
+    } as IFormularioPF);
+    this.router.navigate(['/cadastro/pessoa-fisica']);
+  }
+
+  private cadastrarPessoaJuridica(dados: { identificacao: string } & IFormularioPessoa): void {
+    this.cadastroService.atualizarFormulario({
+      ...dados,
+      cnpj: dados.identificacao,
+    } as IFormularioPJ);
+    this.router.navigate(['/cadastro/fornecedor']);
   }
 }

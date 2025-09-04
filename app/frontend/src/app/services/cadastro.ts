@@ -8,6 +8,14 @@ import {
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { from, Observable, switchMap, throwError } from 'rxjs';
 
+type RespostaCadastro = { message: string };
+
+const MENSAGENS_ERRO = {
+  FORNECEDOR: 'Cadastro de fornecedor incompleto ou inválido',
+  PROFESSOR: 'Cadastro de professor incompleto ou inválido',
+  ALUNO: 'Cadastro de aluno incompleto ou inválido',
+} as const;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,48 +41,57 @@ export class CadastroService {
     this.formulario = {};
   }
 
-  cadastrarFornecedor(): Observable<any> {
+  cadastrarFornecedor(): Observable<RespostaCadastro> {
     if (!this.validarFornecedor(this.formulario)) {
-      return throwError(
-        () => new HttpErrorResponse({ error: 'Cadastro de fornecedor incompleto ou inválido' })
-      );
+      return throwError(() => new HttpErrorResponse({ error: MENSAGENS_ERRO.FORNECEDOR }));
     }
 
-    return this.http.post(this.URL_BASE_CADASTRO + '/fornecedor', this.formulario);
-  }
-
-  cadastrarProfessor(): Observable<any> {
-    if (!this.validarProfessor(this.formulario)) {
-      return throwError(
-        () => new HttpErrorResponse({ error: 'Cadastro de professor incompleto ou inválido' })
-      );
-    }
-
-    return from(this.converterArquivoParaBytes(this.formulario.diploma)).pipe(
-      switchMap((bytes) => {
-        const dados = {
-          ...this.formulario,
-          diploma: Array.from(bytes),
-        };
-        return this.http.post(this.URL_BASE_CADASTRO + '/professor', dados);
-      })
+    return this.http.post<RespostaCadastro>(
+      `${this.URL_BASE_CADASTRO}/fornecedor`,
+      this.formulario
     );
   }
 
-  cadastrarAluno(): Observable<any> {
-    if (!this.validarAluno(this.formulario)) {
-      return throwError(
-        () => new HttpErrorResponse({ error: 'Cadastro de aluno incompleto ou inválido' })
-      );
+  cadastrarProfessor(): Observable<RespostaCadastro> {
+    return this.cadastrarPessoaComArquivo<IFormularioProfessor>(
+      this.validarProfessor.bind(this),
+      MENSAGENS_ERRO.PROFESSOR,
+      'professor',
+      'diploma'
+    );
+  }
+
+  cadastrarAluno(): Observable<RespostaCadastro> {
+    return this.cadastrarPessoaComArquivo<IFormularioAluno>(
+      this.validarAluno.bind(this),
+      MENSAGENS_ERRO.ALUNO,
+      'aluno',
+      'comprovanteEnsinoMedio'
+    );
+  }
+
+  private cadastrarPessoaComArquivo<T extends FormularioCadastro>(
+    validarDados: (dados: Partial<FormularioCadastro>) => dados is T,
+    mensagemErro: string,
+    endpoint: string,
+    arquivoKey: keyof T
+  ): Observable<RespostaCadastro> {
+    if (!validarDados(this.formulario)) {
+      return throwError(() => new HttpErrorResponse({ error: mensagemErro }));
     }
 
-    return from(this.converterArquivoParaBytes(this.formulario.comprovanteEnsinoMedio)).pipe(
+    const arquivo = this.formulario[arquivoKey];
+    if (!(arquivo instanceof File)) {
+      return throwError(() => new HttpErrorResponse({ error: mensagemErro }));
+    }
+
+    return from(this.converterArquivoParaBytes(arquivo)).pipe(
       switchMap((bytes) => {
         const dados = {
           ...this.formulario,
-          comprovanteEnsinoMedio: Array.from(bytes),
+          [arquivoKey]: Array.from(bytes),
         };
-        return this.http.post(this.URL_BASE_CADASTRO + '/aluno', dados);
+        return this.http.post<RespostaCadastro>(`${this.URL_BASE_CADASTRO}/${endpoint}`, dados);
       })
     );
   }
@@ -91,11 +108,17 @@ export class CadastroService {
     });
   }
 
-  private validarFornecedor(dados: Partial<IFormularioFornecedor>): dados is IFormularioFornecedor {
+  private validarCamposBase(dados: Partial<FormularioCadastro>): boolean {
     return (
       typeof dados.nome === 'string' &&
       typeof dados.email === 'string' &&
-      typeof dados.telefone === 'string' &&
+      typeof dados.telefone === 'string'
+    );
+  }
+
+  private validarFornecedor(dados: Partial<IFormularioFornecedor>): dados is IFormularioFornecedor {
+    return (
+      this.validarCamposBase(dados) &&
       typeof dados.cnpj === 'string' &&
       typeof dados.tipoServico === 'string'
     );
@@ -103,23 +126,19 @@ export class CadastroService {
 
   private validarProfessor(dados: Partial<IFormularioProfessor>): dados is IFormularioProfessor {
     return (
-      typeof dados.nome === 'string' &&
-      typeof dados.email === 'string' &&
-      typeof dados.telefone === 'string' &&
+      this.validarCamposBase(dados) &&
       typeof dados.cpf === 'string' &&
-      typeof dados.disciplinasMinistradas === 'object' &&
-      typeof dados.diploma === 'object'
+      Array.isArray(dados.disciplinasMinistradas) &&
+      dados.diploma instanceof File
     );
   }
 
   private validarAluno(dados: Partial<IFormularioAluno>): dados is IFormularioAluno {
     return (
-      typeof dados.nome === 'string' &&
-      typeof dados.email === 'string' &&
-      typeof dados.telefone === 'string' &&
+      this.validarCamposBase(dados) &&
       typeof dados.cpf === 'string' &&
       typeof dados.curso === 'string' &&
-      typeof dados.comprovanteEnsinoMedio === 'object'
+      dados.comprovanteEnsinoMedio instanceof File
     );
   }
 }

@@ -1,4 +1,4 @@
-interface IFormularioPessoa {
+export interface IFormularioPessoa {
   nome: string;
   email: string;
   telefone: string;

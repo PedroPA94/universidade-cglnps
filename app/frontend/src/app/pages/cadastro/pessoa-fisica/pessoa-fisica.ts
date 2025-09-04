@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Card } from '../../../components/card/card';
 import { AvisoErro } from '../../../components/aviso-erro/aviso-erro';
 import { Botao } from '../../../components/botao/botao';
@@ -14,8 +15,14 @@ import {
 } from '../../../shared/interfaces/formulario-cadastro.interface';
 
 enum TipoPessoaFisica {
-  'ALUNO',
-  'PROFESSOR',
+  ALUNO = 'ALUNO',
+  PROFESSOR = 'PROFESSOR',
+}
+
+interface FormularioBase {
+  markAllAsTouched(): void;
+  invalid: boolean;
+  value: any;
 }
 
 @Component({
@@ -73,39 +80,39 @@ export class PessoaFisica {
   }
 
   cadastrarAluno() {
-    this.formularioAluno.markAllAsTouched();
-
-    if (this.formularioAluno.invalid) return;
-
-    this.cadastroService.limparCampos([...this.camposProfessor]);
-    this.cadastroService.atualizarFormulario(this.formularioAluno.value as IFormularioAluno);
-
-    this.cadastroService.cadastrarAluno().subscribe({
-      next: () => {
-        this.router.navigate(['/cadastro/sucesso']);
-      },
-      error: (err: HttpErrorResponse) => {
-        this.mensagemErro = err.error;
-      },
-    });
+    this.cadastrarPessoaFisica<IFormularioAluno>(
+      this.formularioAluno,
+      [...this.camposProfessor],
+      () => this.cadastroService.cadastrarAluno()
+    );
   }
 
   cadastrarProfessor() {
-    this.formularioProfessor.markAllAsTouched();
-
-    if (this.formularioProfessor.invalid) return;
-
-    this.cadastroService.limparCampos([...this.camposAluno]);
-    this.cadastroService.atualizarFormulario(
-      this.formularioProfessor.value as IFormularioProfessor
+    this.cadastrarPessoaFisica<IFormularioProfessor>(
+      this.formularioProfessor,
+      [...this.camposAluno],
+      () => this.cadastroService.cadastrarProfessor()
     );
+  }
 
-    this.cadastroService.cadastrarProfessor().subscribe({
+  private cadastrarPessoaFisica<T extends IFormularioAluno | IFormularioProfessor>(
+    formulario: FormularioBase,
+    camposParaLimpar: string[],
+    cadastrarFn: () => Observable<any>
+  ) {
+    formulario.markAllAsTouched();
+
+    if (formulario.invalid) return;
+
+    this.cadastroService.limparCampos(camposParaLimpar);
+    this.cadastroService.atualizarFormulario(formulario.value as T);
+
+    cadastrarFn().subscribe({
       next: () => {
         this.router.navigate(['/cadastro/sucesso']);
       },
       error: (err: HttpErrorResponse) => {
-        this.mensagemErro = err.error;
+        this.mensagemErro = typeof err.error === 'string' ? err.error : 'Erro ao cadastrar';
       },
     });
   }
