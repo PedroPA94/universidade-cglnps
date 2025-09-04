@@ -2,7 +2,7 @@ package com.cglnps.api.entity;
 
 import com.cglnps.api.exception.CnpjInvalidoException;
 
-public abstract class PessoaJuridica extends Pessoa {
+public abstract class PessoaJuridica extends Pessoa implements Identificavel {
   private String cnpj;
 
   public PessoaJuridica(String nome, String email, String telefone, String cnpj) {
@@ -16,6 +16,11 @@ public abstract class PessoaJuridica extends Pessoa {
 
   public void setCnpj(String cnpj) {
     this.cnpj = cnpj;
+  }
+
+  @Override
+  public String getDocumento() {
+    return cnpj;
   }
 
   public void validarCnpj() throws CnpjInvalidoException {

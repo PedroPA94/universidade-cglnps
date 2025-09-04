@@ -41,6 +41,10 @@ export class CadastroService {
     this.formulario = {};
   }
 
+  verificarPessoaCadastrada(identificacao: string): Observable<any> {
+    return this.http.get<{ existe: boolean }>(`${this.URL_BASE_CADASTRO}/${identificacao}/existe`);
+  }
+
   cadastrarFornecedor(): Observable<RespostaCadastro> {
     if (!this.validarFornecedor(this.formulario)) {
       return throwError(() => new HttpErrorResponse({ error: MENSAGENS_ERRO.FORNECEDOR }));

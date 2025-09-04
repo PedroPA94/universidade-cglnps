@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CadastroService } from '../../services/cadastro';
 import {
-  FormularioCadastro,
   IFormularioPessoa,
   IFormularioPF,
   IFormularioPJ,
@@ -55,6 +54,24 @@ export class Cadastro {
     if (!identificacao || !nome || !email || !telefone) return;
 
     this.cadastroService.limparFormulario();
+
+    this.cadastroService.verificarPessoaCadastrada(identificacao).subscribe({
+      next: () => {
+        this.prosseguirCadastro({ identificacao, nome, email, telefone });
+      },
+      error: () => {
+        this.formulario.controls.identificacao.setErrors({ emUso: true });
+      },
+    });
+  }
+
+  private prosseguirCadastro(dados: {
+    identificacao: string;
+    nome: string;
+    email: string;
+    telefone: string;
+  }) {
+    const { identificacao, nome, email, telefone } = dados;
 
     if (this.ehCPF(identificacao)) {
       this.cadastrarPessoaFisica({ nome, email, telefone, identificacao });

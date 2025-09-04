@@ -2,7 +2,7 @@ package com.cglnps.api.entity;
 
 import com.cglnps.api.exception.CpfInvalidoException;
 
-public abstract class PessoaFisica extends Pessoa {
+public abstract class PessoaFisica extends Pessoa implements Identificavel {
   private String cpf;
 
   public PessoaFisica(String nome, String email, String telefone, String cpf) {
@@ -16,6 +16,11 @@ public abstract class PessoaFisica extends Pessoa {
 
   public void setCpf(String cpf) {
     this.cpf = cpf;
+  }
+
+  @Override
+  public String getDocumento() {
+    return cpf;
   }
 
   public void validarCpf() throws CpfInvalidoException {

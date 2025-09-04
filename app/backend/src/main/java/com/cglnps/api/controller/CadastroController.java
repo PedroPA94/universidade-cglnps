@@ -3,10 +3,7 @@ package com.cglnps.api.controller;
 import com.cglnps.api.controller.dto.CadastroAlunoDto;
 import com.cglnps.api.controller.dto.CadastroFornecedorDto;
 import com.cglnps.api.controller.dto.CadastroProfessorDto;
-import com.cglnps.api.exception.CnpjInvalidoException;
-import com.cglnps.api.exception.CpfInvalidoException;
-import com.cglnps.api.exception.DocumentoInvalidoException;
-import com.cglnps.api.exception.TipoServicoInvalidoException;
+import com.cglnps.api.exception.*;
 import com.cglnps.api.service.CadastroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,5 +36,11 @@ public class CadastroController {
   @ResponseStatus(HttpStatus.CREATED)
   public void cadastrarAluno(@RequestBody CadastroAlunoDto cadastroAlunoDto) throws CpfInvalidoException, DocumentoInvalidoException {
     cadastroService.cadastrarPessoaFisica(cadastroAlunoDto.paraEntidade());
+  }
+
+  @GetMapping("/{identificacao}/existe")
+  @ResponseStatus(HttpStatus.OK)
+  public void verificarPessoaCadastrada(@PathVariable String identificacao) throws PessoaJaCadastradaException {
+    cadastroService.verificarPessoaCadastrada(identificacao);
   }
 }
