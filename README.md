@@ -30,13 +30,77 @@ O desenvolvimento foi dividido em duas etapas:
   - **Angular** no front-end
   - **Java com Spring** no back-end
 
+## Executando o Projeto
+
+### Utilizando Docker Compose
+
+1. Instale o [Docker e Docker Compose](https://docs.docker.com/compose/install/)
+
+2. Clone o repositório e navegue até a pasta do projeto
+
+3. Execute as aplicações:
+
+```bash
+docker compose up
+```
+
+4. Acesse a aplicação em http://localhost:4200
+
+### Executando as Aplicações Separadamente
+
+#### Frontend (Angular)
+
+1. [Instale o Node.js 20.x](https://nodejs.org/en/download)
+
+2. Navegue até a pasta do frontend:
+
+```bash
+cd app/frontend
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+4. Inicie o servidor de desenvolvimento:
+
+```bash
+npm start
+```
+
+5. Acesse o frontend em http://localhost:4200
+
+#### Backend (Spring)
+
+1. [Instale o Java 17](https://www.oracle.com/br/java/technologies/downloads/)
+
+2. Navegue até a pasta do backend:
+
+```bash
+cd app/backend
+```
+
+3. Execute a aplicação:
+
+```bash
+# No Linux/Mac:
+mvn spring-boot:run
+
+# No Windows:
+mvnw.cmd spring-boot:run
+```
+
+4. A API backend estará disponível em http://localhost:8080
+
 ## Estrutura do Repositório
 
 - `/docs` → Diagramas UML (casos de uso e classes)
 - `/prototipos` → Protótipos desenvolvidos no Figma
-- `/frontend` → Código da aplicação Angular
-- `/backend` → Código da aplicação Java + Spring
-- `README.md` → Documento de apoio e contextualização do projeto
+- `/app`
+  - `/frontend` → Código da aplicação Angular
+  - `/backend` → Código da aplicação Java + Spring
 
 ## Integrantes do Grupo
 
