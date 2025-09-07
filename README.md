@@ -42,13 +42,62 @@ O desenvolvimento foi dividido em duas etapas:
 ## Protótipos
 
 - [Protótipo no Figma](https://www.figma.com/design/hF6Qumy1BqxiQK9tT2HxZT/Projeto-Integrador--PI-?node-id=0-1&t=sD4js2QupqKqUeQx-1)
-### 
-![Diagrama de classes](docs/prototipos_002.png)
-![Diagrama de classes](docs/prototipos_003.png)
-![Diagrama de classes](docs/prototipos_004.png)
-![Diagrama de classes](docs/prototipos_005.png)
-![Diagrama de classes](docs/prototipos_006.png)
 
+### Tela inicial
+
+![Tela inicial](prototipos/tela_inicial.png)
+
+### Cadastro - informações básicas
+
+![Cadastro - informações básicas](prototipos/cadastro_pessoa.png)
+
+### Cadastro - CPF/CNPJ não informado
+
+![Cadastro - CPF/CNPJ não informado](prototipos/identificacao_nao_informado.png)
+
+### Cadastro - CPF/CNPJ inválido
+
+![Cadastro - CPF/CNPJ inválido](prototipos/identificao_invalido.png)
+
+### Cadastro - CPF/CNPJ já cadastrado
+
+![Cadastro - CPF/CNPJ já cadastrado](prototipos/ja_cadastrado.png)
+
+### Cadastro PF - escolha de função
+
+![Cadastro PF - escolha de função](prototipos/escolha_funcao.png)
+
+### Cadastro PF - função não informada
+
+![Cadastro PF - função não informada](prototipos/funcao_nao_informada.png)
+
+### Cadastro Professor
+
+![Cadastro Professor](prototipos/cadastro_professor.png)
+
+### Cadastro Professor - diploma não informado
+
+![Cadastro Professor - diploma não informado](prototipos/diploma_nao_informado.png)
+
+### Cadastro Aluno
+
+![Cadastro Aluno](prototipos/cadastro_aluno.png)
+
+### Cadastro Aluno - certificado não informado
+
+![Cadastro Aluno - certificado não informado](prototipos/certificado_nao_informado.png)
+
+### Cadastro Fornecedor
+
+![Cadastro Fornecedor](prototipos/cadastro_fornecedor.png)
+
+### Cadastro Fornecedor - tipo de serviço não informado
+
+![Cadastro Fornecedor - tipo de serviço não informado](prototipos/tipo_servico_nao_informado.png)
+
+### Tela de sucesso
+
+![Tela de sucesso](prototipos/tela_sucesso.png)
 
 ## Executando o Projeto
 
