@@ -35,6 +35,9 @@ O desenvolvimento foi dividido em duas etapas:
 
 ![Diagrama de casos de uso](docs/diagrama_casos_de_uso.png)
 
+## Protótipos
+- [Protótipo no Figma](link-do-prototipo)
+
 ## Executando o Projeto
 
 ### Utilizando Docker Compose
