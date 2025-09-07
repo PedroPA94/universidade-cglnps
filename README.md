@@ -5,7 +5,7 @@ Este repositório reúne os artefatos e entregas desenvolvidos no âmbito do **P
 O objetivo do projeto foi aplicar os conceitos de **modelagem de sistemas orientados a objetos** e **prototipação de software**, 
 utilizando a **UML (Linguagem Unificada de Modelagem)** para estruturar o sistema e ferramentas de desenvolvimento para dar início à implementação.
 
-O trabalho foi realizado como parte das atividades da disciplina de **Projeto Integrador - Desenvolvimento de sistemas orientados a objketos**, em 2025.
+O trabalho foi realizado como parte das atividades da disciplina de **Projeto Integrador - Desenvolvimento de sistemas orientados a objetos**, em 2025.
 
 A proposta foi desenvolver um **sistema de gestão universitária**, contemplando:
 
