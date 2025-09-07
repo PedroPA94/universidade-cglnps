@@ -35,8 +35,14 @@ O desenvolvimento foi dividido em duas etapas:
 
 ![Diagrama de casos de uso](docs/diagrama_casos_de_uso.png)
 
+## Diagrama de classes
+
+![Diagrama de classes](docs/diagrama_classes.png)
+
 ## Protótipos
+
 - [Protótipo no Figma](https://www.figma.com/design/hF6Qumy1BqxiQK9tT2HxZT/Projeto-Integrador--PI-?node-id=0-1&t=sD4js2QupqKqUeQx-1)
+
 ## Executando o Projeto
 
 ### Utilizando Docker Compose
