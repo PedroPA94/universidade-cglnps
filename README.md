@@ -42,6 +42,13 @@ O desenvolvimento foi dividido em duas etapas:
 ## Protótipos
 
 - [Protótipo no Figma](https://www.figma.com/design/hF6Qumy1BqxiQK9tT2HxZT/Projeto-Integrador--PI-?node-id=0-1&t=sD4js2QupqKqUeQx-1)
+### 
+![Diagrama de classes](docs/prototipos_002.png)
+![Diagrama de classes](docs/prototipos_003.png)
+![Diagrama de classes](docs/prototipos_004.png)
+![Diagrama de classes](docs/prototipos_005.png)
+![Diagrama de classes](docs/prototipos_006.png)
+
 
 ## Executando o Projeto
 
