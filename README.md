@@ -2,7 +2,8 @@
 
 Este repositório reúne os artefatos e entregas desenvolvidos no âmbito do **Projeto Integrador** do curso de **Tecnologia em Análise e Desenvolvimento de Sistemas** do **SENAC**.
 
-O objetivo do projeto foi aplicar os conceitos de **modelagem de sistemas orientados a objetos** e **prototipação de software**, utilizando a **UML (Linguagem Unificada de Modelagem)** para estruturar o sistema e ferramentas de desenvolvimento para dar início à implementação.
+O objetivo do projeto foi aplicar os conceitos de **modelagem de sistemas orientados a objetos** e **prototipação de software**, 
+utilizando a **UML (Linguagem Unificada de Modelagem)** para estruturar o sistema e ferramentas de desenvolvimento para dar início à implementação.
 
 O trabalho foi realizado como parte das atividades da disciplina de **Projeto Integrador - Desenvolvimento de sistemas orientados a objketos**, em 2025.
 
