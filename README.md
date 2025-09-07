@@ -7,6 +7,18 @@ utilizando a **UML (Linguagem Unificada de Modelagem)** para estruturar o sistem
 
 O trabalho foi realizado como parte das atividades da disciplina de **Projeto Integrador - Desenvolvimento de sistemas orientados a objetos**, em 2025.
 
+## Sumário
+
+- [Objetivos e metodologia](#objetivos-e-metodologia)
+- [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
+- [Diagrama de classes](#diagrama-de-classes)
+- [Protótipos](#protótipos)
+- [Executando o projeto](#executando-o-projeto)
+- [Estrutura do repositório](#estrutura-do-repositório)
+- [Integrantes do grupo](#integrantes-do-grupo)
+
+## Objetivos e metodologia
+
 A proposta foi desenvolver um **sistema de gestão universitária**, contemplando:
 
 - Cadastro de Pessoa Física
@@ -99,9 +111,9 @@ O desenvolvimento foi dividido em duas etapas:
 
 ![Tela de sucesso](prototipos/tela_sucesso.png)
 
-## Executando o Projeto
+## Executando o projeto
 
-### Utilizando Docker Compose:
+### Utilizando Docker Compose
 
 1. Instale o [Docker e Docker Compose](https://docs.docker.com/compose/install/)
 
