@@ -52,7 +52,7 @@ O desenvolvimento foi dividido em duas etapas:
 
 ## Executando o Projeto
 
-### Utilizando Docker Compose
+### Utilizando Docker Compose:
 
 1. Instale o [Docker e Docker Compose](https://docs.docker.com/compose/install/)
 
