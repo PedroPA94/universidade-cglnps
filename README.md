@@ -19,7 +19,7 @@ O trabalho foi realizado como parte das atividades da disciplina de **Projeto In
 
 ## Objetivos e metodologia
 
-A proposta foi desenvolver um **sistema de gestão universitária**, contemplando:
+A proposta foi desenvolver um **sistema de gestão universitária**, considerando:
 
 - Cadastro de Pessoa Física
 - Cadastro de Pessoa Jurídica
