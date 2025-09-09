@@ -115,7 +115,7 @@ O desenvolvimento foi dividido em duas etapas:
 
 ### Utilizando Docker Compose
 
-1. Instale o [Docker e Docker Compose](https://docs.docker.com/compose/install/)
+1. Instale  [Docker e Docker Compose](https://docs.docker.com/compose/install/)
 
 2. Clone o repositório e navegue até a pasta do projeto
 
